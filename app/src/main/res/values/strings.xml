@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">UniversityApp</string>
+    <string name="forgot">Forgot Password</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="college">College</string>
+    <string name="add">add</string>
+    <string name="club">Club</string>
+    <string name="new_students">New Students</string>
+    <string name="register">register</string>
+    <string name="new_post">New Post</string>
+    <string name="post_name">Post title</string>
+    <string name="description">Description</string>
+    <string name="create">Create</string>
+</resources>

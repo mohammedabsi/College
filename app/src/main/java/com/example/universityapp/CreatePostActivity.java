@@ -156,11 +156,16 @@ public class CreatePostActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(CreatePostActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            binding.progress.setVisibility(View.INVISIBLE);
+                            binding.createpost.setEnabled(true);
                         }
                     });
 
 
         } else {
+            binding.progress.setVisibility(View.INVISIBLE);
+            binding.createpost.setEnabled(true);
+
             Toast.makeText(this, "Please Choose image first", Toast.LENGTH_SHORT).show();
         }
 
@@ -209,6 +214,7 @@ public class CreatePostActivity extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         binding.register.setEnabled(true);
+                                        binding.progress.setVisibility(View.INVISIBLE);
 
 
                                         Toast.makeText(CreatePostActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -239,6 +245,10 @@ public class CreatePostActivity extends AppCompatActivity {
 
                 startActivity(new Intent(CreatePostActivity.this, MainActivity.class));
                 finish();
+                break;
+
+            case R.id.action_std:
+                startActivity(new Intent(CreatePostActivity.this, StdActivity.class));
                 break;
 
 

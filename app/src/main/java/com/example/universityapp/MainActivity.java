@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         setContentView(binding.getRoot());
 
 
-
         firestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
@@ -130,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
                     mainPostsAdaptar.notifyDataSetChanged();
 
-                    if (!placesArrayList.isEmpty()){
+                    if (!placesArrayList.isEmpty()) {
                         binding.hidetxt.setVisibility(View.INVISIBLE);
-                    }else {
+                    } else {
                         binding.hidetxt.setVisibility(View.VISIBLE);
 
                     }
@@ -154,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         startActivity(intent);
 
-       // Toast.makeText(this, "click"+placesArrayList.get(position).getCollege() , Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "click"+placesArrayList.get(position).getCollege() , Toast.LENGTH_SHORT).show();
 
     }
 
@@ -172,14 +171,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         switch (item.getItemId()) {
             case R.id.action_logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
                 break;
 
             case R.id.action_home:
 
-                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
                 finish();
+                break;
+
+            case R.id.action_std:
+                startActivity(new Intent(MainActivity.this, StdActivity.class));
                 break;
 
 

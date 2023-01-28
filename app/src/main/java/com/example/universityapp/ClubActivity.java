@@ -140,6 +140,9 @@ public class ClubActivity extends AppCompatActivity implements RecyclerViewInter
                 startActivity(new Intent(ClubActivity.this,MainActivity.class));
                 finish();
                 break;
+            case R.id.action_std:
+                startActivity(new Intent(ClubActivity.this, StdActivity.class));
+                break;
 
 
         }

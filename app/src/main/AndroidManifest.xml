@@ -10,9 +10,12 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.UniversityApp"
         tools:targetApi="31">
+        <activity
+            android:name=".StdActivity"
+            android:exported="false" />
         <activity
             android:name=".StudentActivity"
             android:exported="false" />

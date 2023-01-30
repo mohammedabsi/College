@@ -6,11 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -41,6 +46,34 @@ public class MainPostsAdaptar extends RecyclerView.Adapter<MainPostsAdaptar.Main
         College maincollege = mainList.get(position);
         holder.single_element.setText(maincollege.getCollege());
 
+        holder.icondelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore.getInstance()
+                        .collection("College")
+                        .document(maincollege.getCollege())
+
+                        .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(mContext, "Club deleted", Toast.LENGTH_SHORT).show();
+                                int pos = holder.getAdapterPosition();
+                                if (pos !=RecyclerView.NO_POSITION){
+                                    mainList.remove(pos);
+                                    notifyItemRemoved(pos);
+                                    recyclerViewInterface.onDeleteClick(pos);
+
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(mContext, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+
 
     }
 
@@ -56,11 +89,13 @@ public class MainPostsAdaptar extends RecyclerView.Adapter<MainPostsAdaptar.Main
 
     public static class MainViewHolder extends RecyclerView.ViewHolder {
         TextView single_element;
+        ImageView icondelete;
 
 
         public MainViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             single_element = itemView.findViewById(R.id.element);
+            icondelete = itemView.findViewById(R.id.icondelete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

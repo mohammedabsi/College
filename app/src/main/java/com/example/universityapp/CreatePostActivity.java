@@ -181,48 +181,69 @@ public class CreatePostActivity extends AppCompatActivity {
         binding.register.setEnabled(false);
 
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        User user = new User("null", email, "null", password, college, club);
+        if (!email.isEmpty()){
+            if (!password.isEmpty()&&password.length()>6){
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                User user = new User("null", email, "null", password, college, club);
 
 
-                        firestore.collection("College")
-                                .document(college)
-                                .collection("clubs")
-                                .document(club)
-                                .collection("User")
-                                .document(email)
-                                .set(user)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-
-                                        firestore.collection("Users").document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                firestore.collection("College")
+                                        .document(college)
+                                        .collection("clubs")
+                                        .document(club)
+                                        .collection("User")
+                                        .document(email)
+                                        .set(user)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
 
+                                                firestore.collection("Users").document(email).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                    }
+                                                });
+
+                                                Toast.makeText(CreatePostActivity.this, "Register success :)", Toast.LENGTH_SHORT).show();
+                                                binding.register.setEnabled(true);
+
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                binding.register.setEnabled(true);
+                                                binding.progress.setVisibility(View.INVISIBLE);
+
+
+                                                Toast.makeText(CreatePostActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
-                                        Toast.makeText(CreatePostActivity.this, "Register success :)", Toast.LENGTH_SHORT).show();
-                                        binding.register.setEnabled(true);
+                            }
+                        });
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        binding.register.setEnabled(true);
-                                        binding.progress.setVisibility(View.INVISIBLE);
+            }else {
+                binding.regPass.setError("enter strong pasword");
+                binding.regPass.requestFocus();
+                binding.register.setEnabled(true);
+
+            }
 
 
-                                        Toast.makeText(CreatePostActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+        }else {
+            binding.regEmail.setError("enter email");
+            binding.regEmail.requestFocus();
+            binding.register.setEnabled(true);
 
-                    }
-                });
+        }
+
+
+
     }
 
     @Override

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UniversityApp</string>
+    <string name="app_name">eClub</string>
     <string name="forgot">Forgot Password</string>
     <string name="login">Login</string>
     <string name="email">Email</string>

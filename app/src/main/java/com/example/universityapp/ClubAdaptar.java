@@ -1,13 +1,21 @@
 package com.example.universityapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -23,11 +31,10 @@ public class ClubAdaptar extends RecyclerView.Adapter<ClubAdaptar.MainViewHolder
     }
 
 
-
     @NonNull
     @Override
     public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.element, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.element2, parent, false);
 
 
         return new MainViewHolder(view, recyclerViewInterface);
@@ -35,8 +42,39 @@ public class ClubAdaptar extends RecyclerView.Adapter<ClubAdaptar.MainViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        College maincollege = mainList.get(position);
-        holder.single_element.setText(maincollege.getClub());
+        College club = mainList.get(position);
+        holder.single_element2.setText(club.getClub());
+
+
+
+        holder.icondelete2.setOnClickListener(new View.OnClickListener() {
+                                                         @Override
+                                                         public void onClick(View view) {
+                                                             FirebaseFirestore.getInstance()
+                                                                     .collection("College")
+                                                                     .document(club.getCollege())
+                                                                     .collection("clubs")
+                                                                     .document(club.getClub())
+                                                                     .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                         @Override
+                                                                         public void onComplete(@NonNull Task<Void> task) {
+                                                                             Toast.makeText(mContext, "Club deleted", Toast.LENGTH_SHORT).show();
+                                                                             int pos = holder.getAdapterPosition();
+                                                                             if (pos !=RecyclerView.NO_POSITION){
+                                                                                 mainList.remove(pos);
+                                                                                 notifyItemRemoved(pos);
+                                                                                 recyclerViewInterface.onDeleteClick(pos);
+
+                                                                             }
+                                                                         }
+                                                                     }).addOnFailureListener(new OnFailureListener() {
+                                                                         @Override
+                                                                         public void onFailure(@NonNull Exception e) {
+                                                                             Toast.makeText(mContext, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                                                         }
+                                                                     });
+                                                         }
+                                                     });
 
 
     }
@@ -52,12 +90,14 @@ public class ClubAdaptar extends RecyclerView.Adapter<ClubAdaptar.MainViewHolder
     }
 
     public static class MainViewHolder extends RecyclerView.ViewHolder {
-        TextView single_element;
+        TextView single_element2;
+        ImageView icondelete2;
 
 
         public MainViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
-            single_element = itemView.findViewById(R.id.element);
+            single_element2 = itemView.findViewById(R.id.element2);
+            icondelete2 = itemView.findViewById(R.id.icondelete2);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

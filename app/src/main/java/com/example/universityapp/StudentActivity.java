@@ -159,4 +159,9 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
     public void onItemClick(Integer position) {
 
     }
+
+    @Override
+    public void onDeleteClick(Integer position) {
+
+    }
 }

@@ -59,7 +59,7 @@ public class ClubActivity extends AppCompatActivity implements RecyclerViewInter
         String x = getIntent().getStringExtra("colTags");
         String club = binding.addclub.getText().toString().trim();
 
-        College college = new College(null, null);
+        College college = new College(x, club);
 
         if (!club.isEmpty()) {
 
@@ -163,5 +163,11 @@ public class ClubActivity extends AppCompatActivity implements RecyclerViewInter
         startActivity(intent);
 
 
+    }
+
+    @Override
+    public void onDeleteClick(Integer position) {
+        placesArrayList.remove(position);
+        clubAdaptar.notifyItemRemoved(position);
     }
 }

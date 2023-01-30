@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white2"
     tools:context=".StudentActivity">
 
 
@@ -14,10 +15,8 @@
 
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="College :"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/collegetitle"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:text="College"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,11 +26,10 @@
 
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Club :"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/clubtitle"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/collegetitle"
+        android:text="Club"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -39,28 +37,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:text="add"
         android:textColor="@color/purple_500"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:textSize="18sp"
 
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/clubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:text="@string/add"
         android:textColor="@color/purple_500"
-        android:textSize="22sp"
+        android:textSize="18sp"
 
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -70,6 +64,6 @@
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/collegetitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

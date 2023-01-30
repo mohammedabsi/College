@@ -132,4 +132,10 @@ public class StdActivity extends AppCompatActivity implements RecyclerViewInterf
     public void onItemClick(Integer position) {
 
     }
+
+    @Override
+    public void onDeleteClick(Integer position) {
+        userArrayListArrayList.remove(position);
+        stdAdaptar.notifyItemRemoved(position);
+    }
 }

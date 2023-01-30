@@ -9,7 +9,7 @@
 
 
         <TextView
-            android:id="@+id/element"
+            android:id="@+id/element2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add"
@@ -19,7 +19,7 @@ android:layout_weight="1"
             />
 
         <ImageView
-            android:id="@+id/icondelete"
+            android:id="@+id/icondelete2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_delete"

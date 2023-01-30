@@ -158,6 +158,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     @Override
+    public void onDeleteClick(Integer position) {
+
+        placesArrayList.remove(position);
+        mainPostsAdaptar.notifyItemRemoved(position);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menulayout, menu);

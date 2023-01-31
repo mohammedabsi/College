@@ -1,6 +1,7 @@
 package com.example.universityapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +37,9 @@ private ActivityLoginBinding binding ;
         binding= ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         firebaseAuth = FirebaseAuth.getInstance();
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
 
         binding.forgetPasswordTV.setOnClickListener(new View.OnClickListener() {
             @Override

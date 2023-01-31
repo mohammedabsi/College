@@ -2,6 +2,7 @@ package com.example.universityapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -40,6 +41,9 @@ public class ClubActivity extends AppCompatActivity implements RecyclerViewInter
 
         binding = ActivityClubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
 
         binding.addclubbtn.setOnClickListener(new View.OnClickListener() {
             @Override

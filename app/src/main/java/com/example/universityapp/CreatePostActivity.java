@@ -2,6 +2,7 @@ package com.example.universityapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -46,6 +47,9 @@ public class CreatePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCreatePostBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
 
         mAuth = FirebaseAuth.getInstance();
 

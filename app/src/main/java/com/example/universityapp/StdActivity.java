@@ -2,6 +2,7 @@ package com.example.universityapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -41,6 +42,8 @@ public class StdActivity extends AppCompatActivity implements RecyclerViewInterf
         super.onCreate(savedInstanceState);
         binding = ActivityStdBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
 
 
         firestore = FirebaseFirestore.getInstance();
